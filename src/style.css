@@ -1,0 +1,11 @@
+body div {
+color: pink;
+}
+@font-face{
+    font-family: myFont;
+    src:url('./Goldie\ Rainbow.ttf')
+}
+
+div{
+    font-family: myFont;
+}
