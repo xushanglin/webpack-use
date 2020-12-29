@@ -2,15 +2,23 @@ const path = require('path')
 // 引入插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')//引入插件系统库
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
+// 处理 vue 文件第二步, 引入插件并注册
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports={
-    entry: './src/index.js',  //项目入口文件
+    entry: '/src/main.js',  //项目入口文件
     output: {
         filename: 'main.js', //打包后的名字
         path:path.resolve(__dirname,'../dist') //打包后的文件目录 
     },
     module: {
         rules: [
+            // 处理 vue 文件第一步
+      {
+        test: /\.vue$/,
+        use: [
+          'vue-loader'
+        ]
+      },
             {
                 test: /\.css$/,			// 匹配css扩展名文件
                 use: [					// 配置loader加载器
@@ -69,5 +77,6 @@ module.exports={
             // 给他一个模板，去照这个模板生成一个html
             template: 'public/index.html'
         }),
+        new VueLoaderPlugin()
     ]
 }
