@@ -2,22 +2,13 @@ const path = require('path')
 // 引入插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')//引入插件系统库
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// 导入清除插件
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports={
     entry: './src/index.js',  //项目入口文件
     output: {
         filename: 'main.js', //打包后的名字
-        path:path.resolve(__dirname,'dist') //打包后的文件目录 
+        path:path.resolve(__dirname,'../dist') //打包后的文件目录 
     },
-    // 配置生成映射源文件代码，
-    // 用于快速定位错误位置
-    devtool: "source-map",
-      // + 开发服务配置
-    devServer: {
-        port: 5500 // 默认端口是8080
-   },
     module: {
         rules: [
             {
@@ -78,7 +69,5 @@ module.exports={
             // 给他一个模板，去照这个模板生成一个html
             template: 'public/index.html'
         }),
-        // 调用清除打包插件
-        new CleanWebpackPlugin()
     ]
 }
